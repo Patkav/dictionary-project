@@ -11,7 +11,8 @@ export default function Dictionary() {
 
   function search(event) {
     event.preventDefault();
-    alert(`Searching for ${keyword} definition`);
+
+    // documentation : https://www.shecodes.io/learn/apis/dictionary
     let apiUrl =
       "https://api.shecodes.io/dictionary/v1/define?word=book&key=4e73714c1tadb83363cf2o8c24a08c12";
     axios.get(apiUrl).then(handleResponse);
