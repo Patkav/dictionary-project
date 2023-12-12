@@ -13,7 +13,24 @@ export default function App() {
           <Dictionary />
         </main>
         <footer className="App-footer">
-          <small>Coded by Patricia Kavanaugh</small>
+          <small>
+            This project was coded by {""}
+            <a
+              href="https://www.shecodes.io/graduates/70979-patricia-kavanaugh"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Patricia Kavanaugh
+            </a>{" "}
+            and is {""}
+            <a
+              href="https://github.com/Patkav/dictionary-project"
+              target="_blanck"
+              rel="noreferrer"
+            >
+              open-sourced on Github
+            </a>
+          </small>
         </footer>
       </div>
     </div>
