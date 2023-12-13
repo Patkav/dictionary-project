@@ -4,7 +4,7 @@ import Results from "./Results";
 import "./Dictionary.css";
 
 export default function Dictionary() {
-  let [keyword, setKeyword] = useState("");
+  let [keyword, setKeyword] = useState("Sunset");
   let [results, setResults] = useState(null);
   let [loaded, setLoaded] = useState(false);
 
@@ -38,8 +38,13 @@ export default function Dictionary() {
     return (
       <div className="Dictionary">
         <section>
+          <h1>What word do you want to look up ?</h1>
           <form onSubmit={handleSubmit}>
-            <input type="search" onChange={handleKeywordChange} />
+            <input
+              type="search"
+              onChange={handleKeywordChange}
+              defaultValue={PaymentResponse.Keyword}
+            />
           </form>
           <div className="hint">
             suggested words: sunset, beach, wine, yoga...
