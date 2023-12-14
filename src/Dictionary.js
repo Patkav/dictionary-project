@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Photos from "./Photos";
 import Results from "./Results";
 import "./Dictionary.css";
 
@@ -7,18 +8,28 @@ export default function Dictionary() {
   let [keyword, setKeyword] = useState("Sunset");
   let [results, setResults] = useState(null);
   let [loaded, setLoaded] = useState(false);
+  let [photos, setPhotos] = useState(null);
 
   function handleResponse(response) {
     setResults(response.data);
   }
 
+  function handleSheCodesResponse(response) {
+    setPhotos(response.data.photo);
+  }
+  
   function search() {
     // documentation : https://www.shecodes.io/learn/apis/dictionary
     let apiKey = "4e73714c1tadb83363cf2o8c24a08c12";
     let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
 
-    axios.get(apiUrl).then(handleResponse);
+    axios.get(apiUrl).then(handleDictionaryResponse);
   }
+
+  let sheCodesApiKey="4e73714c1tadb83363cf2o8c24a08c12"
+let sheCodesApiUrl = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${apiKey}`;
+axios.get(sheCodesApiUrl).then (handlesheCodesResponse);
+}
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -43,7 +54,7 @@ export default function Dictionary() {
             <input
               type="search"
               onChange={handleKeywordChange}
-              defaultValue={PaymentResponse.Keyword}
+            
             />
           </form>
           <div className="hint">
@@ -51,6 +62,7 @@ export default function Dictionary() {
           </div>
         </section>
         <Results results={results} />
+        <Photos photos={photos}/>
       </div>
     );
   } else {
