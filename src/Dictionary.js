@@ -10,14 +10,14 @@ export default function Dictionary() {
   let [loaded, setLoaded] = useState(false);
   let [photos, setPhotos] = useState(null);
 
-  function handleResponse(response) {
+  function handleDictionaryResponse(response) {
     setResults(response.data);
   }
 
   function handleSheCodesResponse(response) {
     setPhotos(response.data.photo);
   }
-  
+
   function search() {
     // documentation : https://www.shecodes.io/learn/apis/dictionary
     let apiKey = "4e73714c1tadb83363cf2o8c24a08c12";
@@ -26,10 +26,9 @@ export default function Dictionary() {
     axios.get(apiUrl).then(handleDictionaryResponse);
   }
 
-  let sheCodesApiKey="4e73714c1tadb83363cf2o8c24a08c12"
-let sheCodesApiUrl = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${apiKey}`;
-axios.get(sheCodesApiUrl).then (handlesheCodesResponse);
-}
+  let sheCodesApiKey = "4e73714c1tadb83363cf2o8c24a08c12";
+  let sheCodesApiUrl = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${sheCodesApiKey}`;
+  axios.get(sheCodesApiUrl).then(handleSheCodesResponse);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -51,18 +50,14 @@ axios.get(sheCodesApiUrl).then (handlesheCodesResponse);
         <section>
           <h1>What word do you want to look up ?</h1>
           <form onSubmit={handleSubmit}>
-            <input
-              type="search"
-              onChange={handleKeywordChange}
-            
-            />
+            <input type="search" onChange={handleKeywordChange} />
           </form>
           <div className="hint">
             suggested words: sunset, beach, wine, yoga...
           </div>
         </section>
         <Results results={results} />
-        <Photos photos={photos}/>
+        <Photos photos={photos} />
       </div>
     );
   } else {
