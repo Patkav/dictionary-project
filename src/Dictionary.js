@@ -4,18 +4,18 @@ import Photos from "./Photos";
 import Results from "./Results";
 import "./Dictionary.css";
 
-export default function Dictionary() {
-  let [keyword, setKeyword] = useState("Sunset");
+export default function Dictionary(props) {
+  let [keyword, setKeyword] = useState(props.defaultKeyword);
   let [results, setResults] = useState(null);
   let [loaded, setLoaded] = useState(false);
   let [photos, setPhotos] = useState(null);
 
   function handleDictionaryResponse(response) {
-    setResults(response.data);
+    setResults(response.data[0]);
   }
 
   function handleSheCodesResponse(response) {
-    setPhotos(response.data.photo);
+    setPhotos(response.data.photos);
   }
 
   function search() {
@@ -50,7 +50,11 @@ export default function Dictionary() {
         <section>
           <h1>What word do you want to look up ?</h1>
           <form onSubmit={handleSubmit}>
-            <input type="search" onChange={handleKeywordChange} />
+            <input
+              type="search"
+              onChange={handleKeywordChange}
+              defaultValue={props.defaultKeyword}
+            />
           </form>
           <div className="hint">
             suggested words: sunset, beach, wine, yoga...
