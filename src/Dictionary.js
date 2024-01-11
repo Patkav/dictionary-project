@@ -11,7 +11,7 @@ export default function Dictionary(props) {
   let [photos, setPhotos] = useState(null);
 
   function handleDictionaryResponse(response) {
-    setResults(response.data[0]);
+    setResults(response.data);
   }
 
   function handleSheCodesResponse(response) {
@@ -40,8 +40,8 @@ export default function Dictionary(props) {
   }
 
   function load() {
-    setLoaded(true);
     search();
+    setLoaded(true);
   }
 
   if (loaded) {
