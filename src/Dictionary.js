@@ -40,8 +40,8 @@ export default function Dictionary(props) {
   }
 
   function load() {
-    search();
     setLoaded(true);
+    search();
   }
 
   if (loaded) {
